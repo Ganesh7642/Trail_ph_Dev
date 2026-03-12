@@ -1,4 +1,4 @@
-templates:
+template:
   - path: databases.yaml
  
 entries:
