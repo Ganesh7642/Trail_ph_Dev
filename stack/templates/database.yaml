@@ -1,0 +1,6 @@
+databases:
+  - name: {{name}}
+
+schemas:
+  - name: test_schema
+    database: {{name}}

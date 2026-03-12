@@ -1,0 +1,29 @@
+image: openjdk:11
+
+pipelines:
+  default:
+    - step:
+        name: "DryRun"
+        script:
+          - chmod 755 bin/install-toolkit-cli
+          - ls -lrt bin/install-toolkit-cli
+          - bin/install-toolkit-cli
+          - (umask 077 ; echo "$SNOWFLAKE_PRIVATE_KEY_PEM" | base64 --decode > prov_user_us_azure_rsa_key.p8)
+          - export SNOWFLAKE_PRIVATE_KEY_FILE="prov_user_us_azure_rsa_key.p8"
+          - export TOOLKIT_JAVA_OPTIONS='-Xmx2g'
+          - toolkit-cli/toolkit provision apply --stack dev --plan
+        artifacts:
+          - plan.sql
+
+  branches:
+    main:
+      - step:
+          name: "Provision"
+          script:
+            - chmod 755 bin/install-toolkit-cli
+            - ls -lrt bin/install-toolkit-cli
+            - bin/install-toolkit-cli
+            - (umask 077 ; echo "$SNOWFLAKE_PRIVATE_KEY_PEM" | base64 --decode > prov_user_us_azure_rsa_key.p8)
+            - export SNOWFLAKE_PRIVATE_KEY_FILE="prov_user_us_azure_rsa_key.p8"
+            - export TOOLKIT_JAVA_OPTIONS='-Xmx2g'
+            - toolkit-cli/toolkit provision apply --stack dev --approve
