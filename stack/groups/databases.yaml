@@ -1,6 +1,6 @@
 template:
-  - path: databases.yaml
- 
+  path: databases.yaml
+
 entries:
   - name: test_database
     description: "Name of the database to create"
