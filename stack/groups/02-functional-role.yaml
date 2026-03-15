@@ -1,0 +1,11 @@
+template:
+  path: functional_role.yaml
+
+entries:
+  - roles_to_create:
+      - name: FR_PROVISION_APP
+        comment: "Functional role for Provision app service account"
+      - name: OBJ_DB_DEVELOPMENT_USE
+        comment: "Demo OBJ role for development use in trial"
+      - name: OBJ_DB_DEVELOPMENT_SELECT
+        comment: "Demo OBJ role for development select in trial"

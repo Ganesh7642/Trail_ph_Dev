@@ -1,0 +1,22 @@
+warehouses:
+  - name: {{ wh_name }}
+    properties:
+      warehouse_type: {{ wh_type }}
+      warehouse_size: {{ wh_size }}
+      auto_suspend: {{ auto_suspend }}
+      auto_resume: {{ auto_resume }}
+      initially_suspended: {{ initially_suspended }}
+      statement_queued_timeout_in_seconds: {{ statement_queued_timeout_in_seconds }}
+      statement_timeout_in_seconds: {{ statement_timeout_in_seconds }}
+      comment: "{{ comment }}"
+      resource_monitor: {{ resource_monitor }}
+
+privilegeGrants:
+{% for role_name in grant_usage_and_operate | default([]) %}
+  - privilege:
+      - USAGE
+      - OPERATE
+    objectType: WAREHOUSE
+    objectName: {{ wh_name }}
+    roleName: {{ role_name }}
+{% endfor %}

@@ -1,0 +1,16 @@
+template:
+  path: warehouse.yaml
+
+entries:
+  - wh_name: PROVISION_APP_WH
+    wh_type: STANDARD
+    wh_size: XSMALL
+    auto_suspend: 60
+    auto_resume: true
+    initially_suspended: true
+    statement_queued_timeout_in_seconds: 0
+    statement_timeout_in_seconds: 0
+    comment: Warehouse for Provision App service account
+    resource_monitor: PROVISION_APP_WH_MONITOR
+    grant_usage_and_operate:
+      - FR_PROVISION_APP

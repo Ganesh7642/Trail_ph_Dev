@@ -1,0 +1,14 @@
+template:
+  path: warehouse_role_grants.yaml
+
+entries:
+  - warehouse: PROVISION_APP_WH
+    role_name: FR_PROVISION_APP
+    privileges:
+      - USAGE
+      - OPERATE
+
+  - warehouse: PROVISION_APP_WH
+    role_name: USER_PLATFORM_OPS
+    privileges:
+      - USAGE

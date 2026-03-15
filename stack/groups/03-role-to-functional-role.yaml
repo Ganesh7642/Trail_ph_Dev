@@ -1,0 +1,8 @@
+template:
+  path: role_grants.yaml
+
+entries:
+  - role: FR_PROVISION_APP
+    granted_roles:
+      - name: OBJ_DB_DEVELOPMENT_USE
+      - name: OBJ_DB_DEVELOPMENT_SELECT

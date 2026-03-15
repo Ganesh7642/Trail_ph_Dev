@@ -1,0 +1,6 @@
+roles:
+{% for r in roles_to_create %}
+  - name: {{ r.name }}
+    properties:
+      comment: "{{ r.comment }}"
+{% endfor %}

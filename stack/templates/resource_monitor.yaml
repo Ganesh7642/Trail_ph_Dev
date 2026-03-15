@@ -1,0 +1,10 @@
+resourceMonitors:
+  - name: {{ name }}
+    creditQuota: {{ credit_quota }}
+    frequency: {{ frequency }}
+    startTimestamp: {{ start_time }}
+    triggers:
+{% for trigger in triggers %}
+      - threshold: {{ trigger.threshold }}
+        action: {{ trigger.action }}
+{% endfor %}

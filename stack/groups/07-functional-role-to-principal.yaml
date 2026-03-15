@@ -1,0 +1,11 @@
+template:
+  path: functional_role_to_principal.yaml
+
+entries:
+  - principal_type: USER
+    principal_name: PROVISION_APP_SVC
+    functional_role: FR_PROVISION_APP
+
+  - principal_type: USER
+    principal_name: Ganesh
+    functional_role: FR_PROVISION_APP
