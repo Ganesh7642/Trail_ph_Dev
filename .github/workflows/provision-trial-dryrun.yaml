@@ -12,6 +12,7 @@ jobs:
 
     env:
       TOOLKIT_AUTH_TOKEN: ${{ secrets.TOOLKIT_AUTH_TOKEN }}
+      SNOWFLAKE_PRIVATE_KEY_PASSPHRASE: ${{ secrets.SNOWFLAKE_PRIVATE_KEY_PASSPHRASE }}
 
     steps:
       - name: Checkout
@@ -31,13 +32,13 @@ jobs:
 
       - name: Reconstruct trial Snowflake private key
         env:
-          SNOWFLAKE_PRIVATE_KEY_FILE: ${{ secrets.SNOWFLAKE_PRIVATE_KEY_FILE }}
+          PRIVATE_KEY_B64: ${{ secrets.SNOWFLAKE_PRIVATE_KEY_FILE }}
         run: |
           umask 077
-          echo "$SNOWFLAKE_PRIVATE_KEY_FILE" | base64 --decode > trial_provision_key.p8
+          echo "$PRIVATE_KEY_B64" | base64 --decode > trial_provision_key.p8
+          # This sets the env var that toolkit.conf is looking for
+          echo "SNOWFLAKE_PRIVATE_KEY_FILE=trial_provision_key.p8" >> $GITHUB_ENV
 
       - name: Toolkit dry run against trial
         run: |
-          # Use trial config as the default Toolkit config
-          # mv toolkit-trial.conf toolkit.conf
           ./toolkit provision apply --plan
