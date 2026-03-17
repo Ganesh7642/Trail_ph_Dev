@@ -1,0 +1,41 @@
+name: Provision Dry Run (Trial)
+
+on:
+  push:
+    branches: [ main, Master, feature/Intial_Syncup ]
+  pull_request:
+    branches: [ main, Master ]
+
+jobs:
+  dryrun-trial:
+    runs-on: ubuntu-latest
+
+    env:
+      TOOLKIT_AUTH_TOKEN: ${{ secrets.TOOLKIT_AUTH_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Toolkit CLI
+        run: |
+          curl --fail -o toolkit-cli.zip "https://repo.phdata.io/3BCJzuXgtfTCoa6c/toolkit-cli/maven/io/phdata/toolkit/toolkit-cli/0.90.0/toolkit-cli-0.90.0.zip"
+          unzip -jd . toolkit-cli.zip
+          chmod +x toolkit
+
+      - name: Reconstruct trial Snowflake private key
+        env:
+          SNOWFLAKE_PRIVATE_KEY_FILE: ${{ secrets.SNOWFLAKE_PRIVATE_KEY_FILE }}
+        run: |
+          umask 077
+          echo "$SNOWFLAKE_PRIVATE_KEY_FILE" | base64 --decode > trial_provision_key.p8
+
+      - name: Toolkit dry run against trial
+        run: |
+          ./toolkit @toolkit-trial.conf provision apply --plan
