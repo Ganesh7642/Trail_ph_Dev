@@ -39,5 +39,5 @@ jobs:
       - name: Toolkit dry run against trial
         run: |
           # Use trial config as the default Toolkit config
-          mv toolkit-trial.conf toolkit.conf
+          # mv toolkit-trial.conf toolkit.conf
           ./toolkit provision apply --plan
