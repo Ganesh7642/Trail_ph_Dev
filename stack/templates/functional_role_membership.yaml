@@ -1,3 +1,7 @@
+# Template for functional-role membership:
+# - roleGrants: grants other roles to the functional role
+# - privilegeGrants: grants warehouse privileges to roles
+
 roleGrants:
 {% for role_grant in granted_roles | default([]) %}
   - name: {{ role_grant.name }}
