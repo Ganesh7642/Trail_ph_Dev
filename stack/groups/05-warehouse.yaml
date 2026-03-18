@@ -1,5 +1,5 @@
 template:
-  path: warehouse.yml
+  path: warehouse.yaml
 
 entries:
   - wh_name: DBT_PROVISION_APP_WH
