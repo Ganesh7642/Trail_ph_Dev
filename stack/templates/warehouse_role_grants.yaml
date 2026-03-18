@@ -1,8 +1,0 @@
-privilegeGrants:
-  - privilege:
-{% for p in privileges %}
-      - {{ p }}
-{% endfor %}
-    objectType: WAREHOUSE
-    objectName: {{ warehouse }}
-    roleName: {{ role_name }}

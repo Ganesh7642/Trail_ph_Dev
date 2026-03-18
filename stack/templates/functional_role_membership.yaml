@@ -1,0 +1,18 @@
+roleGrants:
+{% for role_grant in granted_roles | default([]) %}
+  - name: {{ role_grant.name }}
+    destroy: {{ role_grant.destroy | default(false) }}
+    toRoles:
+      - {{ functional_role }}
+{% endfor %}
+
+privilegeGrants:
+{% for wg in warehouse_grants | default([]) %}
+  - privilege:
+{% for p in wg.privileges %}
+      - {{ p }}
+{% endfor %}
+    objectType: WAREHOUSE
+    objectName: {{ wg.warehouse }}
+    roleName: {{ wg.role_name }}
+{% endfor %}

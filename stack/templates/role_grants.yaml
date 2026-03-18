@@ -1,7 +1,0 @@
-roleGrants:
-{% for role_grant in granted_roles %}
-  - name: {{ role_grant.name }}
-    destroy: {{ role_grant.destroy | default(false) }}
-    toRoles:
-      - {{ role }}
-{% endfor %}
