@@ -1,33 +1,24 @@
-templates/warehouse.yaml
 warehouses:
   - name: {{ wh_name }}
-{% if wh_type is truthy %}
-    warehouseType: {{ wh_type }}
+    properties:
+      warehouse_type: {{ wh_type }}
+      warehouse_size: {{ wh_size }}
+      auto_suspend: {{ auto_suspend }}
+      auto_resume: {{ auto_resume }}
+      initially_suspended: {{ initially_suspended }}
+      statement_queued_timeout_in_seconds: {{ statement_queued_timeout_in_seconds }}
+      statement_timeout_in_seconds: {{ statement_timeout_in_seconds }}
+      comment: "{{ comment }}"
+{% if resource_monitor %}
+      resource_monitor: {{ resource_monitor }}
 {% endif %}
-{% if wh_size is truthy %}
-    warehouseSize: {{ wh_size }}
-{% endif %}
-{% if resource_type is truthy %}
-    resourceConstraint: {{ resource_type }}
-{% endif %}
-{% if auto_suspend is truthy %}
-    autoSuspend: {{ auto_suspend }}
-{% endif %}
-{% if auto_resume is not none %}
-    autoResume: {{ auto_resume }}
-{% endif %}
-{% if initially_suspended is not none %}
-    initiallySuspended: {{ initially_suspended }}
-{% endif %}
-{% if statement_queued_timeout_in_seconds is truthy %}
-    statementQueuedTimeoutInSeconds: {{ statement_queued_timeout_in_seconds }}
-{% endif %}
-{% if statement_timeout_in_seconds is truthy %}
-    statementTimeoutInSeconds: {{ statement_timeout_in_seconds }}
-{% endif %}
-{% if comment is truthy %}
-    comment: "{{ comment }}"
-{% endif %}
-{% if resource_monitor is truthy %}
-    resourceMonitor: {{ resource_monitor }}
-{% endif %
+
+privilegeGrants:
+{% for role_name in grant_usage_and_operate | default([]) %}
+  - privilege:
+      - USAGE
+      - OPERATE
+    objectType: WAREHOUSE
+    objectName: {{ wh_name }}
+    roleName: {{ role_name }}
+{% endfor %}
