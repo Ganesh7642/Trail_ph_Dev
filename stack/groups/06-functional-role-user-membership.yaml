@@ -1,0 +1,6 @@
+template:
+  path: functional_role_user_membership.yaml
+
+entries:
+  - functional_role: FR_DBT_PROVISION_APP
+    user_name: SVC_DBT_PROVISION_APP

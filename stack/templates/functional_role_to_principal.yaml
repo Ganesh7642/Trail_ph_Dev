@@ -1,4 +1,0 @@
-roleGrants:
-  - name: {{ functional_role }}
-    to{{ principal_type | title }}s:
-      - {{ principal_name }}
