@@ -1,8 +1,11 @@
+templates/resource_monitor.yml
 resourceMonitors:
   - name: {{ name }}
-    creditQuota: {{ credit_quota }}
-    frequency: {{ frequency }}
-    startTimestamp: {{ start_time }}
+    frequency: {{ frequency | default("MONTHLY") }}
+    startTimestamp: {{ start_time | default("IMMEDIATELY") }}
+{% if comment is defined and comment %}
+    comment: "{{ comment }}"
+{% endif %}
     triggers:
 {% for trigger in triggers %}
       - threshold: {{ trigger.threshold }}
