@@ -1,12 +1,13 @@
 resourceMonitors:
   - name: {{ name }}
-    frequency: {{ frequency | default("MONTHLY") }}
-    startTimestamp: {{ start_time | default("IMMEDIATELY") }}
+    properties:
+      frequency: {{ frequency | default("MONTHLY") }}
+      start_timestamp: {{ start_time | default("IMMEDIATELY") }}
 {% if comment is defined and comment %}
-    comment: "{{ comment }}"
+      comment: "{{ comment }}"
 {% endif %}
-    triggers:
+      triggers:
 {% for trigger in triggers %}
-      - threshold: {{ trigger.threshold }}
-        action: {{ trigger.action }}
+        - threshold: {{ trigger.threshold }}
+          action: {{ trigger.action }}
 {% endfor %}

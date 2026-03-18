@@ -1,32 +1,33 @@
 warehouses:
   - name: {{ wh_name }}
+    properties:
 {% if wh_type is truthy %}
-    warehouseType: {{ wh_type }}
+      warehouse_type: {{ wh_type }}
 {% endif %}
 {% if wh_size is truthy %}
-    warehouseSize: {{ wh_size }}
+      warehouse_size: {{ wh_size }}
 {% endif %}
 {% if resource_type is truthy %}
-    resourceConstraint: {{ resource_type }}
+      resource_constraint: {{ resource_type }}
 {% endif %}
 {% if auto_suspend is truthy %}
-    autoSuspend: {{ auto_suspend }}
+      auto_suspend: {{ auto_suspend }}
 {% endif %}
 {% if auto_resume is not none %}
-    autoResume: {{ auto_resume }}
+      auto_resume: {{ auto_resume }}
 {% endif %}
 {% if initially_suspended is not none %}
-    initiallySuspended: {{ initially_suspended }}
+      initially_suspended: {{ initially_suspended }}
 {% endif %}
 {% if statement_queued_timeout_in_seconds is truthy %}
-    statementQueuedTimeoutInSeconds: {{ statement_queued_timeout_in_seconds }}
+      statement_queued_timeout_in_seconds: {{ statement_queued_timeout_in_seconds }}
 {% endif %}
 {% if statement_timeout_in_seconds is truthy %}
-    statementTimeoutInSeconds: {{ statement_timeout_in_seconds }}
+      statement_timeout_in_seconds: {{ statement_timeout_in_seconds }}
 {% endif %}
 {% if comment is truthy %}
-    comment: "{{ comment }}"
+      comment: "{{ comment }}"
 {% endif %}
 {% if resource_monitor is truthy %}
-    resourceMonitor: {{ resource_monitor }}
+      resource_monitor: {{ resource_monitor }}
 {% endif %}
