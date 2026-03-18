@@ -1,12 +1,10 @@
 name: Provision Dry Run (Trial)
 
 on:
-  pull_request:
-    branches:
-      - '*'
-  push:
-    branches:
-    - main
+  push:
+    branches: [ main, Master, feature/Intial_Syncup ]
+  pull_request:
+    branches: [ main, Master ]
 
 jobs:
   dryrun-trial:
