@@ -1,4 +1,4 @@
-templates/warehouse.yml
+templates/warehouse.yaml
 warehouses:
   - name: {{ wh_name }}
 {% if wh_type is truthy %}

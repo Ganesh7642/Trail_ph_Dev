@@ -1,5 +1,5 @@
 template:
-  path: resource_monitor.yml
+  path: resource_monitor.yaml
 
 entries:
   - name: DBT_PROVISION_APP_WH_MONITOR

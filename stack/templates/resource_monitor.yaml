@@ -1,4 +1,4 @@
-templates/resource_monitor.yml
+templates/resource_monitor.yaml
 resourceMonitors:
   - name: {{ name }}
     frequency: {{ frequency | default("MONTHLY") }}
